@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>خدمات ممبر ایتا</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7fb;color:#18202a}
+.wrap{max-width:760px;margin:auto;padding:22px 16px 40px}
+.hero{background:linear-gradient(135deg,#151b2d,#26365e);color:#fff;border-radius:24px;padding:34px 22px;text-align:center;box-shadow:0 12px 35px #17213d22}
+.logo{font-size:28px;font-weight:800;margin-bottom:10px}.hero p{margin:8px 0;color:#dce4ff;line-height:1.9}
+.card{background:#fff;border-radius:22px;padding:24px;margin-top:18px;box-shadow:0 8px 28px #17213d12}
+.badge{display:inline-block;background:#e9fff2;color:#087a3b;padding:7px 12px;border-radius:99px;font-size:13px;font-weight:700}
+h2{margin:12px 0 8px;font-size:23px}.price{font-size:28px;font-weight:900;margin:14px 0}.muted{color:#687386;line-height:2;font-size:14px}
+.features{display:grid;gap:10px;margin:18px 0}.feature{background:#f7f9fc;padding:12px 14px;border-radius:13px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:15px;text-align:center;font-size:16px;font-weight:800;text-decoration:none;cursor:pointer;margin-top:10px}
+.primary{background:#202c4f;color:#fff}.secondary{background:#eef2f8;color:#202c4f}
+.cardno{direction:ltr;text-align:center;font-size:20px;font-weight:800;letter-spacing:1px;background:#f7f8fb;padding:16px;border-radius:14px;margin:12px 0}
+.note{font-size:13px;color:#687386;line-height:1.9}
+.footer{text-align:center;color:#8a93a3;font-size:12px;margin-top:22px}
+
+.order-modal{display:none;position:fixed;inset:0;background:#0008;z-index:20;padding:18px;align-items:center;justify-content:center}
+.order-modal.show{display:flex}.modal-box{width:min(520px,100%);background:#fff;border-radius:22px;padding:24px;box-shadow:0 20px 60px #0004}
+.modal-close{float:left;border:0;background:#eef2f8;border-radius:10px;width:38px;height:38px;font-size:20px;cursor:pointer}
+.modal-title{font-size:22px;font-weight:900;margin:4px 45px 12px 0}.modal-price{font-size:25px;font-weight:900;margin:14px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="logo">ممبر ایتا</div>
+    <p>فروش ۱۰۰۰ ممبر ایتا با تضمین ۷ روزه</p>
+  </section>
+
+  <section class="card">
+    <span class="badge">تضمین ۷ روزه</span>
+    <h2>۱۰۰۰ ممبر ایتا</h2>
+    <div class="price">۲۹۸ هزار تومان</div>
+    <div class="features">
+      <div class="feature">✓ بدون ریزش در ۷ روز اول</div>
+      <div class="feature">✓ تضمین ۷ روزه از زمان ثبت سفارش</div>
+      <div class="feature">✓ پشتیبانی از طریق ایتا</div>
+    </div>
+    <p class="muted">ممبرها تا ۷ روز تضمین میشن. بعد از ۷ روز ممکنه مقدار کمی ریزش داشته باشن یا اصلاً ریزشی نداشته باشن.</p>
+    <button class="btn primary" onclick="openPayment('week')">ثبت سفارش</button>
+  </section>
+
+  <section class="card">
+    <span class="badge">تضمین ۱ ماهه</span>
+    <h2>۱۰۰۰ ممبر ایتا</h2>
+    <div class="price">۵۹۸ هزار تومان</div>
+    <div class="features">
+      <div class="feature">✓ بدون ریزش در ۱ ماه اول</div>
+      <div class="feature">✓ تضمین ۱ ماهه از زمان ثبت سفارش</div>
+      <div class="feature">✓ پشتیبانی از طریق ایتا</div>
+    </div>
+    <p class="muted">ممبرها تا ۱ ماه تضمین میشن. بعد از ۱ ماه ممکنه اصلاً ریزش نداشته باشن یا تعدادی از ممبرها کم بشن.</p>
+    <button class="btn primary" onclick="openPayment('month')">ثبت سفارش</button>
+  </section>
+<section class="card">
+    <h2>پشتیبانی</h2>
+    <p class="muted">برای پیگیری سفارش یا سوال درباره خدمات، در ایتا پیام بدید.</p>
+    <a class="btn primary" href="https://eitaa.com/ALI_PERSHIAN1" target="_blank" rel="noopener">@ALI_PERSHIAN1</a>
+  </section>
+
+  
+  <div class="order-modal" id="orderModal" onclick="if(event.target===this) closePayment()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closePayment()">×</button>
+      <div class="modal-title" id="modalTitle">پرداخت سفارش</div>
+      <p class="muted" id="modalDescription"></p>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="cardno">6219 8613 5149 4470</div>
+      <p class="note"><b>به نام: مظفری</b></p>
+      <button class="btn secondary" onclick="copyCard()">📋 کپی شماره کارت</button>
+      <a class="btn primary" href="https://eitaa.com/ALI_PERSHIAN1" target="_blank" rel="noopener">💬 واریز کردم، ارسال رسید</a>
+      <p class="note">بعد از واریز، رسید پرداخت و لینک کانالتون رو برای پشتیبانی ارسال کنید.</p>
+    </div>
+  </div>
+
+  <div class="footer">تمامی سفارش‌ها پس از بررسی پرداخت پیگیری میشن.</div>
+</div>
+<script>
+function openPayment(plan){
+  const modal=document.getElementById("orderModal");
+  const title=document.getElementById("modalTitle");
+  const desc=document.getElementById("modalDescription");
+  const price=document.getElementById("modalPrice");
+  if(plan==="month"){
+    title.textContent="ثبت سفارش | تضمین ۱ ماهه";
+    desc.textContent="برای ۱۰۰۰ ممبر بدون ریزش با تضمین ۱ ماهه، مبلغ زیر را واریز کنید.";
+    price.textContent="۵۹۸ هزار تومان";
+  }else{
+    title.textContent="ثبت سفارش | تضمین ۷ روزه";
+    desc.textContent="برای ۱۰۰۰ ممبر بدون ریزش با تضمین ۷ روزه، مبلغ زیر را واریز کنید.";
+    price.textContent="۲۹۸ هزار تومان";
+  }
+  modal.classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function closePayment(){
+  document.getElementById("orderModal").classList.remove("show");
+  document.body.style.overflow="";
+}
+function copyCard(){
+  navigator.clipboard.writeText("6219861351494470");
+  alert("شماره کارت کپی شد.");
+}
+</script>
+</body>
+</html>
